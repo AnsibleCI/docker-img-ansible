@@ -19,3 +19,5 @@ RUN python3 -m ensurepip && \
 RUN apk add python3-dev libffi-dev gcc make musl-dev openssl openssl-dev
 
 RUN pip3 install ansible
+
+RUN pip3 install ansible-lint
