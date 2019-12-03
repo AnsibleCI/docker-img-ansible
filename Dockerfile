@@ -9,7 +9,7 @@ RUN apk update && \
     apk add ca-certificates && \
     update-ca-certificates
 
-RUN apk add python3 py-pip
+RUN apk add git python3 py-pip
 
 RUN python3 -m ensurepip && \
     rm -r /usr/lib/python*/ensurepip && \
@@ -18,6 +18,12 @@ RUN python3 -m ensurepip && \
 
 RUN apk add python3-dev libffi-dev gcc make musl-dev openssl openssl-dev
 
-RUN pip3 install ansible
+RUN pip3 install ansible ansible-lint
 
-RUN pip3 install ansible-lint
+RUN cd /tmp && \
+    git clone https://github.com/AnsibleCI/ansible-lint.git && \
+    cd /tmp/ansible-lint/lib/ansiblelint/ && \
+    cp -f __main__.py /usr/lib/python3.7/site-packages/ansiblelint/ && \
+    cp -f utils.py /usr/lib/python3.7/site-packages/ansiblelint/ && \
+    cp -f formatters/__init__.py /usr/lib/python3.7/site-packages/ansiblelint/formatters/ && \
+    rm -rf /tmp/ansible-lint
