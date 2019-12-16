@@ -14,7 +14,7 @@ jobs:
       with:
         GITHUB_PACKAGE_REGISTRY_LOGIN: ${{ secrets.GITHUB_PACKAGE_REGISTRY_LOGIN }}
         GITHUB_PACKAGE_REGISTRY_PASSWORD: ${{ secrets.GITHUB_PACKAGE_REGISTRY_PASSWORD }}
-        IMAGE_NAME: 'perl-dzil'
+        IMAGE_NAME: 'ansibleci'
 
     - name: Show previous step output
       run: |
