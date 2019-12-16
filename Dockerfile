@@ -27,3 +27,8 @@ RUN cd /tmp && \
     cp -f utils.py /usr/lib/python3.7/site-packages/ansiblelint/ && \
     cp -f formatters/__init__.py /usr/lib/python3.7/site-packages/ansiblelint/formatters/ && \
     rm -rf /tmp/ansible-lint
+
+RUN cd / && \
+    git clone https://github.com/AnsibleCI/ansible-project-ansibleci.git ansibleci
+
+WORKDIR /ansibleci
