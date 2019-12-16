@@ -1,0 +1,25 @@
+name: Build and Push Docker image to GitHub Package Registry
+on: [create]
+jobs:
+  build:
+    runs-on: ubuntu-latest 
+    steps:
+
+    - name: Checkout repository
+      uses: actions/checkout@master
+
+    - name: Publish Docker Image to Github Package Registry
+      uses: sebthebert/github-action-build-push-github-package-registry@master
+      id: docker
+      with:
+        GITHUB_PACKAGE_REGISTRY_LOGIN: ${{ secrets.GITHUB_PACKAGE_REGISTRY_LOGIN }}
+        GITHUB_PACKAGE_REGISTRY_PASSWORD: ${{ secrets.GITHUB_PACKAGE_REGISTRY_PASSWORD }}
+        IMAGE_NAME: 'perl-dzil'
+
+    - name: Show previous step output
+      run: |
+        echo "The Docker Image is: $VAR1"
+        echo "The Docker Image is hosted at $VAR2"
+      env:
+        VAR1: ${{ steps.docker.outputs.DOCKER_IMAGE_NAME }}
+        VAR2: ${{ steps.docker.outputs.DOCKER_IMAGE_URL }}
