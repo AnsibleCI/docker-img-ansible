@@ -4,7 +4,7 @@ This Docker image contains:
 
 * Python 3
 * Ansible (latest version)
-* Ansible Lint
+* Modified version of ansible-lint from [AnsibleCI/ansible-lint](https://github.com/AnsibleCI/ansible-lint.git)
   
 ```shell
 $ docker run --rm -it ansible:0.0.1 ansible --version
